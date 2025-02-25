@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Toaster, toast } from "react-hot-toast";
-import { AiOutlineCloudUpload } from "react-icons/ai";
-import styles from "../styles/ImageUploader.module.css";
 
 export default function ImageUploader() {
   const [images, setImages] = useState([]);
@@ -61,11 +59,8 @@ export default function ImageUploader() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-8">
-      <header className="mb-6">
-        <h1 className="text-4xl font-bold">PixDrop</h1>
-        <p className="text-gray-400">Upload and manage your images effortlessly</p>
-      </header>
       <Toaster />
+      <h1 className="text-3xl font-bold mb-6">Image Uploader</h1>
       <div className="w-full max-w-lg p-4 bg-gray-900 rounded-xl shadow-md flex flex-col gap-4">
         <div
           className="border-2 border-dashed border-gray-500 p-8 rounded-lg text-center cursor-pointer"
@@ -75,10 +70,7 @@ export default function ImageUploader() {
           {imageFile ? (
             <p className="text-green-400">{imageFile.name}</p>
           ) : (
-            <div>
-              <AiOutlineCloudUpload className="mx-auto text-4xl text-gray-500 mb-2" />
-              <p>Drag & Drop an image here</p>
-            </div>
+            <p>Drag & Drop an image here</p>
           )}
         </div>
         <input type="file" className="hidden" onChange={handleFileChange} />
