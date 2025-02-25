@@ -3,7 +3,6 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { Toaster, toast } from "react-hot-toast";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import './ImageUploader.css';
 
 export default function ImageUploader() {
   const [images, setImages] = useState([]);
