@@ -10,6 +10,7 @@ export default function ImagePage() {
   const router = useRouter();
   const { id } = router.query;
   const [imageUrl, setImageUrl] = useState(null);
+  const [loading, setLoading] = useState(true); // Prevents rendering before fetching
 
   useEffect(() => {
     if (!id) return;
@@ -22,15 +23,21 @@ export default function ImagePage() {
       } catch (error) {
         console.error("Image fetch error:", error.response?.data || error);
         setImageUrl(null);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchImage();
   }, [id]);
 
+  if (loading) {
+    return null; // Prevents premature rendering
+  }
+
   if (imageUrl === null) {
     return <h1>404 - Image Not Found</h1>;
   }
 
-  return imageUrl ? <img src={imageUrl} alt="Uploaded Image" /> : null;
+  return <img src={imageUrl} alt="Uploaded Image" />;
 }
